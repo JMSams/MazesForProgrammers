@@ -8,6 +8,6 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 {
     public abstract class AlgorithmBase
     {
-        public abstract void On(MazeGrid grid);
+        public abstract void On(ref MazeGrid grid);
     }
 }

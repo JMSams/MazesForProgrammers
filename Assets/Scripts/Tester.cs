@@ -18,14 +18,25 @@ public class Tester : MonoBehaviour
 
     private void Start()
     {
-        GO();
+        grid = new MazeGrid(columnCount, rowCount);
+        output.text = grid.ToString();
     }
 
-    public void GO()
+    public void BinaryTree()
+    {
+        GO<BinaryTree>();
+    }
+
+    public void RecursiveBacktracker()
+    {
+        GO<RecursiveBacktracker>();
+    }
+
+    void GO<T>() where T : AlgorithmBase, new()
     {
         grid = new MazeGrid(columnCount, rowCount);
-        BinaryTree bt = new BinaryTree();
-        bt.On(grid);
+        T algorithm = new T();
+        algorithm.On(ref grid);
         output.text = grid.ToString();
     }
 }

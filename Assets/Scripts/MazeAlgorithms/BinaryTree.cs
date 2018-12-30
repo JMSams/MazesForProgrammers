@@ -4,7 +4,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 {
     public class BinaryTree : AlgorithmBase
     {
-        public override void On(MazeGrid grid)
+        public override void On(ref MazeGrid grid)
         {
             for (int y = grid.rowCount-1; y >= 0; y--)
             {

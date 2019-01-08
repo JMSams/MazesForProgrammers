@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mazes_for_Programmers.MazeAlgorithms
@@ -6,19 +7,29 @@ namespace Mazes_for_Programmers.MazeAlgorithms
     public class RecursiveBacktracker : AlgorithmBase
     {
         bool[,] visited;
-
-        public override void On(ref MazeGrid grid)
+        
+        public override IEnumerator On(MazeGrid grid, Tester tester)
         {
             int startX = Random.Range(0, grid.columnCount);
             int startY = Random.Range(0, grid.rowCount);
 
             visited = new bool[grid.columnCount, grid.rowCount];
+            for (int x = 0; x < grid.columnCount; x++)
+                for (int y = 0; y < grid.rowCount; y++)
+                    visited[x, y] = false;
 
-            Backtracker(ref grid, startX, startY);
+            yield return tester.StartCoroutine(Backtracker(grid, startX, startY, tester));
+
+            tester.AlgorithmComplete();
         }
 
-        void Backtracker(ref MazeGrid grid, int x, int y)
+        IEnumerator Backtracker(MazeGrid grid, int x, int y, Tester tester)
         {
+            if (tester != null)
+                yield return new WaitForSeconds(tester.delayTime);
+
+            tester.output.text = grid.ToString();
+
             visited[x, y] = true;
 
             List<Direction> directions = new List<Direction>();
@@ -37,20 +48,30 @@ namespace Mazes_for_Programmers.MazeAlgorithms
                 Direction d = directions[i];
                 directions.RemoveAt(i);
 
+                Cell other = null;
+
                 switch (d)
                 {
                     case Direction.North:
-                        Backtracker(ref grid, x, y - 1);
+                        other = grid[x, y - 1];
                         break;
                     case Direction.South:
-                        Backtracker(ref grid, x, y + 1);
+                        other = grid[x, y + 1];
                         break;
                     case Direction.East:
-                        Backtracker(ref grid, x + 1, y);
+                        other = grid[x + 1, y];
                         break;
                     case Direction.West:
-                        Backtracker(ref grid, x - 1, y);
+                        other = grid[x - 1, y];
                         break;
+                }
+
+                if (other == null) continue;
+
+                if (!visited[other.column, other.row])
+                {
+                    grid[x, y].Link(other);
+                    yield return tester.StartCoroutine(Backtracker(grid, other.column, other.row, tester));
                 }
             }
         }

@@ -168,14 +168,4 @@ public class Tester : MonoBehaviour
             return sprites_none;
         #endregion
     }
-
-    [Flags]
-    enum Directions
-    {
-        nill    = 0,
-        north   = 1,
-        east    = 2,
-        south   = 4,
-        west    = 8
-    }
 }

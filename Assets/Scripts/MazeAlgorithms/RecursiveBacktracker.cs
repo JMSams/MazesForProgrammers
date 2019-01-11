@@ -37,10 +37,26 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             yield return new WaitForSeconds(tester.delayTime / 2f);
 
             // TODO: randomly choose cells to recurse into
+            List<Directions> directions = new List<Directions>();
+            if (x > 0)
+            	directions.Add(Directions.west);
+            if (x < grid.columnCount-1)
+            	directions.Add(Directions.east);
+            if (y > 0)
+            	directions.Add(Directions.north);
+            if (y < grid.rowCount-1)
+            	directions.Add(Directions.south);
 
             OnDraw(grid, unvisited, cellQueue, new Highlight() { cells = { grid[x, y] }, colour = Color.red });
             cellQueue.cells.Add(grid[x, y]);
-            // Backtracker()
+            
+            while (directions.Count > 0)
+            {
+            	Directions d = directions[Random.Range(0, directions.Count)];
+            	directions.Remove(d);
+            	yield return tester.StartCoroutine(Backtracker());
+            }
+            
             cellQueue.cells.Remove(grid[x, y]);
             yield return new WaitForSeconds(tester.delayTime / 2f);
         }

@@ -15,6 +15,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             int startY = Random.Range(0, grid.rowCount);
             
             unvisited = new Highlight();
+            unvisited.cells = new List<Cell>();
             for (int x = 0; x < grid.columnCount; x++)
                 for (int y = 0; y < grid.rowCount; y++)
                     unvisited.cells.Add(grid[x, y]);
@@ -47,17 +48,45 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             if (y < grid.rowCount-1)
             	directions.Add(Directions.south);
 
-            OnDraw(grid, unvisited, cellQueue, new Highlight() { cells = { grid[x, y] }, colour = Color.red });
+            Highlight currentCell = new Highlight()
+            {
+                //cells = { grid[x, y] },
+                colour = Color.red
+            };
+            OnDraw(grid, unvisited, cellQueue);
+
             cellQueue.cells.Add(grid[x, y]);
             
             while (directions.Count > 0)
             {
             	Directions d = directions[Random.Range(0, directions.Count)];
             	directions.Remove(d);
-            	yield return tester.StartCoroutine(Backtracker());
+
+                Vector2Int other = Vector2Int.zero;
+                switch (d)
+                {
+                    case Directions.north:
+                        other = new Vector2Int(x, y - 1);
+                        break;
+                    case Directions.south:
+                        other = new Vector2Int(x, y + 1);
+                        break;
+                    case Directions.east:
+                        other = new Vector2Int(x + 1, y);
+                        break;
+                    case Directions.west:
+                        other = new Vector2Int(x - 1, y);
+                        break;
+                }
+                if (unvisited.cells.Contains(grid[other.x, other.y]))
+                {
+                    grid[x, y].Link(grid[other.x, other.y]);
+                    yield return tester.StartCoroutine(Backtracker(grid, other.x, other.y, tester));
+                }
             }
             
             cellQueue.cells.Remove(grid[x, y]);
+            OnDraw(grid, unvisited, cellQueue);
             yield return new WaitForSeconds(tester.delayTime / 2f);
         }
     }

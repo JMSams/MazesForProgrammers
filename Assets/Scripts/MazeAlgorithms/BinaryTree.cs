@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mazes_for_Programmers.MazeAlgorithms
@@ -11,6 +12,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
         public override IEnumerator On(MazeGrid grid, Tester tester)
         {
             unvisited = new Highlight();
+            unvisited.cells = new List<Cell>();
             for (int x = 0; x < grid.columnCount; x++)
                 for (int y = 0; y < grid.rowCount; y++)
                     unvisited.cells.Add(grid[x, y]);
@@ -47,7 +49,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 
                     OnDraw(grid, new Highlight()
                         {
-                            cells = { grid[x, y] },
+                            cells = new List<Cell>{ grid[x, y] },
                             colour = Color.red
                         }, unvisited
                     );

@@ -36,7 +36,7 @@ public class Tester : MonoBehaviour
 
     bool isRunning = false;
 
-    GameObject[,] sprites;
+    GameObject[,] sprites = new GameObject[2,2];
 
     private void Start()
     {
@@ -70,7 +70,7 @@ public class Tester : MonoBehaviour
         T algorithm = new T
         {
             OnComplete = () => { OutputMaze(this.grid); isRunning = false; },
-            OnDraw = (grid, highlights) => { OutputMaze(grid, highlights); }
+            OnDraw = OutputMaze
         };
 
         StartCoroutine(algorithm.On(grid, this));
@@ -78,16 +78,12 @@ public class Tester : MonoBehaviour
 
     void OutputMaze(MazeGrid grid, params Highlight[] highlights)
     {
-        if (sprites != null)
+        for (int x = 0; x < sprites.GetLength(0); x++)
         {
-            for (int x = 0; x < sprites.GetLength(0); x++)
+            for (int y = 0; y < sprites.GetLength(1); y++)
             {
-                for (int y = 0; y < sprites.GetLength(1); y++)
-                {
-                    DestroyImmediate(sprites[x, y]);
-                }
+                DestroyImmediate(sprites[x, y]);
             }
-
         }
 
         sprites = new GameObject[grid.columnCount, grid.rowCount];

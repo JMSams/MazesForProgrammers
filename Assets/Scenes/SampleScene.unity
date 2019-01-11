@@ -165,7 +165,7 @@ MonoBehaviour:
     type: 3}
   columnCount: 15
   rowCount: 10
-  delayTime: 0.02
+  delayTime: 0.05
 --- !u!4 &13984061
 Transform:
   m_ObjectHideFlags: 0

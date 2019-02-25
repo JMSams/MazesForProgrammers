@@ -55,6 +55,11 @@ public class Tester : MonoBehaviour
         GO<RecursiveBacktracker>();
     }
 
+    public void Kruskal()
+    {
+        GO<Kruskal>();
+    }
+
     void GO<T>() where T : AlgorithmBase, new()
     {
         if (isRunning)
@@ -94,6 +99,7 @@ public class Tester : MonoBehaviour
                 GameObject temp = new GameObject(string.Format("cell {0},{1}", x, y));
                 temp.transform.SetParent(this.transform);
                 temp.transform.localPosition = new Vector3(x, 0 - y, 0);
+                temp.transform.localScale = Vector3.one;
                 SpriteRenderer tsprite = temp.AddComponent<SpriteRenderer>();
                 tsprite.sprite = CellToSprite(grid, grid[x, y]);
 
@@ -103,7 +109,7 @@ public class Tester : MonoBehaviour
                     {
                         if (grid[x, y] == cell)
                         {
-                            tsprite.color *= highlight.colour;
+                            tsprite.color = highlight.colour;
                         }
                     }
                 }

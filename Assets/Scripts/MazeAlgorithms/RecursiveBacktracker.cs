@@ -50,10 +50,10 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 
             Highlight currentCell = new Highlight()
             {
-                //cells = { grid[x, y] },
+                cells = new List<Cell>{ grid[x, y] },
                 colour = Color.red
             };
-            OnDraw(grid, unvisited, cellQueue);
+            OnDraw(grid, unvisited, cellQueue, cellQueue, currentCell);
 
             cellQueue.cells.Add(grid[x, y]);
             

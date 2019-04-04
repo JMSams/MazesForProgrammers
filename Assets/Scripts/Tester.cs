@@ -30,7 +30,7 @@ public class Tester : MonoBehaviour
     [Range(3, 32)]
     public int rowCount = 3;
 
-    public float delayTime = 0.01f;
+    public float delayTime { get; set; }
 
     MazeGrid grid;
 

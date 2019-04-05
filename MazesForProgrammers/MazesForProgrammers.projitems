@@ -9,14 +9,9 @@
     <Import_RootNamespace>MazesForProgrammers</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Algorithms\AlgorithmBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Algorithms\BinaryTree.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Directions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtensionMethods.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainGame.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Grid.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Random.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />

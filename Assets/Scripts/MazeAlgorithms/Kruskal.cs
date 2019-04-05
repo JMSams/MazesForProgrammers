@@ -43,7 +43,6 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 
                 if (setA == setB)
                 { // if both sets are in the same set, pick a new pair
-                    Debug.Log(string.Format("found pair in same set ({0},{1}) & ({2},{3})", passage.cellA.column, passage.cellA.row, passage.cellB.column, passage.cellB.row));
                     continue;
                 }
                 else

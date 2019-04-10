@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MazesForProgrammers", "MazesForProgrammers\MazesForProgrammers.shproj", "{DC6CE0FB-CA4E-4D50-B7B1-CD5282B227C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazesForProgrammers - Windows", "MazesForProgrammers - Windows\MazesForProgrammers - Windows.csproj", "{7E5D613D-62C3-4BAD-BBE9-2D49E0BE93A3}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MazesForProgrammers\MazesForProgrammers.projitems*{7e5d613d-62c3-4bad-bbe9-2d49e0be93a3}*SharedItemsImports = 4
+		MazesForProgrammers\MazesForProgrammers.projitems*{dc6ce0fb-ca4e-4d50-b7b1-cd5282b227c7}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E5D613D-62C3-4BAD-BBE9-2D49E0BE93A3}.Debug|x86.ActiveCfg = Debug|x86
+		{7E5D613D-62C3-4BAD-BBE9-2D49E0BE93A3}.Debug|x86.Build.0 = Debug|x86
+		{7E5D613D-62C3-4BAD-BBE9-2D49E0BE93A3}.Release|x86.ActiveCfg = Release|x86
+		{7E5D613D-62C3-4BAD-BBE9-2D49E0BE93A3}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E63DC6B-6110-4416-982B-660090D684CD}
+	EndGlobalSection
+EndGlobal

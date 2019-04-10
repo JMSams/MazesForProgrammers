@@ -1,0 +1,23 @@
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\MazesForProgrammers - Windows.exe
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\MazesForProgrammers - Windows.pdb
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\MonoGame.Framework.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.XInput.dll
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\MonoGame.Framework.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\bin\Windows\x86\Debug\SharpDX.XInput.xml
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\obj\x86\Debug\MazesForProgrammers - Windows.csprojAssemblyReference.cache
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\obj\x86\Debug\MazesForProgrammers - Windows.csproj.CoreCompileInputs.cache
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\obj\x86\Debug\MazesForProgrammers - Windows.csproj.CopyComplete
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\obj\x86\Debug\MazesForProgrammers - Windows.exe
+J:\Projects\MazesForProgrammers\MazesForProgrammers\MazesForProgrammers - Windows\obj\x86\Debug\MazesForProgrammers - Windows.pdb

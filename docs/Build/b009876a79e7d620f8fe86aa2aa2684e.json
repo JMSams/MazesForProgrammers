@@ -1,0 +1,16 @@
+{
+"companyName": "Falling Sloth",
+"productName": "Mazes for Programmers",
+"productVersion": "3.2",
+"dataUrl": "37bfba9776c759a24c0ee9edcdde2ad1.unityweb",
+"wasmCodeUrl": "20a6b695759abc52ff5d1079a6304a5b.unityweb",
+"wasmFrameworkUrl": "f59f7c8a74b26ac910811c0c8dc09750.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.5f1"
+}

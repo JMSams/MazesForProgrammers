@@ -78,7 +78,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
                 cells = new List<Cell>{ grid[x, y] },
                 colour = Color.red
             };
-            OnDraw(grid, unvisited, cellQueue, cellQueue, currentCell);
+            OnDraw(grid, unvisited, cellQueue, currentCell);
 
             cellQueue.cells.Add(grid[x, y]);
             

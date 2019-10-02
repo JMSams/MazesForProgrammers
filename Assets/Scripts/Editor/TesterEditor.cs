@@ -42,7 +42,8 @@ namespace Mazes_for_Programmers
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("columnCount"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("rowCount"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("delayTime"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_delayTime"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("_parallelProccesses"));
 
             serializedObject.ApplyModifiedProperties();
         }

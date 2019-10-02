@@ -30,7 +30,31 @@ public class Tester : MonoBehaviour
     [Range(3, 32)]
     public int rowCount = 3;
 
-    public float delayTime { get; set; }
+    [Range(0.001f, 0.3f)]
+    [SerializeField]
+    private float _delayTime;
+    public float delayTime
+    {
+        get => _delayTime;
+        set => _delayTime = value;
+    }
+    public void SetDelayTime(float value)
+    {
+        delayTime = value;
+    }
+
+    [Range(2, 7)]
+    [SerializeField]
+    private int _parallelProccesses = 2;
+    public int parallelProccesses
+    {
+        get => _parallelProccesses;
+        set => _parallelProccesses = value;
+    }
+    public void SetParallelProccesses(int value)
+    {
+        parallelProccesses = value;
+    }
 
     MazeGrid grid;
 
@@ -53,6 +77,11 @@ public class Tester : MonoBehaviour
     public void RecursiveBacktracker()
     {
         GO<RecursiveBacktracker>();
+    }
+
+    public void RecursiveBacktrackerParallel()
+    {
+        GO<RecursiveBacktrackerParallel>();
     }
 
     public void Kruskal()

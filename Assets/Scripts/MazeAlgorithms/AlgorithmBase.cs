@@ -5,7 +5,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
     public abstract class AlgorithmBase
     {
         public delegate void AlgorithmCompleteCallbackDelegate();
-        public delegate void AlgorithmDrawCallbackDelegate(MazeGrid grid, params Highlight[] highlights);
+        public delegate void AlgorithmDrawCallbackDelegate(MazeGrid grid);
 
         public AlgorithmCompleteCallbackDelegate OnComplete;
         public AlgorithmDrawCallbackDelegate OnDraw;

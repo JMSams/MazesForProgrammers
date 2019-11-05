@@ -24,10 +24,10 @@ public class Tester : MonoBehaviour
     public Sprite sprites_north_south_east_west;
     #endregion
 
-    [Range(3, 32)]
+    [Range(3, 80)]
     public int columnCount = 3;
 
-    [Range(3, 32)]
+    [Range(3, 80)]
     public int rowCount = 3;
 
     [Range(0.001f, 0.3f)]
@@ -38,35 +38,21 @@ public class Tester : MonoBehaviour
         get => _delayTime;
         set => _delayTime = value;
     }
-    public void SetDelayTime(float value)
-    {
-        delayTime = value;
-    }
-
-    [Range(2, 7)]
-    [SerializeField]
-    private int _parallelProccesses = 2;
-    public int parallelProccesses
-    {
-        get => _parallelProccesses;
-        set => _parallelProccesses = value;
-    }
-    public void SetParallelProccesses(int value)
-    {
-        parallelProccesses = value;
-    }
 
     MazeGrid grid;
 
-    bool isRunning = false;
+    Coroutine currentRun;
+    bool isRunning { get => currentRun != null; }
 
-    GameObject[,] sprites = new GameObject[2,2];
+    SpriteRenderer[,] sprites;
 
     private void Start()
     {
         grid = new MazeGrid(columnCount, rowCount);
-        
-        OutputMaze(this.grid);
+
+        CreateNewSprites();
+
+        OutputMaze(grid);
     }
 
     public void BinaryTree()
@@ -79,14 +65,16 @@ public class Tester : MonoBehaviour
         GO<RecursiveBacktracker>();
     }
 
-    public void RecursiveBacktrackerParallel()
-    {
-        GO<RecursiveBacktrackerParallel>();
-    }
-
     public void Kruskal()
     {
         GO<Kruskal>();
+    }
+
+    public void CancelRun()
+    {
+        if (!isRunning) return;
+
+        this.StopCoroutine(currentRun);
     }
 
     void GO<T>() where T : AlgorithmBase, new()
@@ -97,53 +85,58 @@ public class Tester : MonoBehaviour
             return;
         }
 
-        isRunning = true;
-
         grid = new MazeGrid(columnCount, rowCount);
+
+        CreateNewSprites();
 
         T algorithm = new T
         {
-            OnComplete = () => { OutputMaze(this.grid); isRunning = false; },
+            OnComplete = () =>
+            {
+                OutputMaze(this.grid);
+                currentRun = null;
+            },
             OnDraw = OutputMaze
         };
 
-        StartCoroutine(algorithm.On(grid, this));
+        currentRun = StartCoroutine(algorithm.On(grid, this));
     }
 
-    void OutputMaze(MazeGrid grid, params Highlight[] highlights)
+    void CreateNewSprites()
     {
-        for (int x = 0; x < sprites.GetLength(0); x++)
+        if (sprites != null)
         {
-            for (int y = 0; y < sprites.GetLength(1); y++)
+            for (int x = 0; x < sprites.GetLength(0); x++)
             {
-                DestroyImmediate(sprites[x, y]);
+                for (int y = 0; y < sprites.GetLength(1); y++)
+                {
+                    DestroyImmediate(sprites[x, y]);
+                }
             }
         }
-
-        sprites = new GameObject[grid.columnCount, grid.rowCount];
+        sprites = new SpriteRenderer[columnCount, rowCount];
         for (int x = 0; x < grid.columnCount; x++)
         {
             for (int y = 0; y < grid.rowCount; y++)
             {
-                GameObject temp = new GameObject(string.Format("cell {0},{1}", x, y));
-                temp.transform.SetParent(this.transform);
-                temp.transform.localPosition = new Vector3(x, 0 - y, 0);
-                temp.transform.localScale = Vector3.one;
-                SpriteRenderer tsprite = temp.AddComponent<SpriteRenderer>();
-                tsprite.sprite = CellToSprite(grid, grid[x, y]);
+                sprites[x, y] = new GameObject(string.Format("Cell ({0}, {1})", x, y)).AddComponent<SpriteRenderer>();
+                sprites[x, y].transform.SetParent(transform);
+                sprites[x, y].transform.localPosition = new Vector3(x, 0 - y);
+                sprites[x, y].transform.localScale = Vector3.one;
+                sprites[x, y].sprite = CellToSprite(grid, grid[x, y]);
+                sprites[x, y].color = Color.black;
+            }
+        }
+    }
 
-                foreach (Highlight highlight in highlights)
-                {
-                    foreach (Cell cell in highlight.cells)
-                    {
-                        if (grid[x, y] == cell)
-                        {
-                            tsprite.color = highlight.colour;
-                        }
-                    }
-                }
-
-                sprites[x, y] = temp;
+    void OutputMaze(MazeGrid grid)
+    {
+        for (int x = 0; x < grid.columnCount; x++)
+        {
+            for (int y = 0; y < grid.rowCount; y++)
+            {
+                sprites[x, y].sprite = CellToSprite(grid, grid[x, y]);
+                sprites[x, y].color = grid[x, y].colour;
             }
         }
     }

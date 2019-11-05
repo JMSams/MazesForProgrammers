@@ -6,22 +6,22 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 {
     public class RecursiveBacktracker : AlgorithmBase
     {
-        Highlight cellQueue;
-        Highlight unvisited;
+        Set cellQueue;
+        Set unvisited;
 
         public override IEnumerator On(MazeGrid grid, Tester tester)
         {
             int startX = Random.Range(0, grid.columnCount);
             int startY = Random.Range(0, grid.rowCount);
             
-            unvisited = new Highlight();
+            unvisited = new Set();
             unvisited.cells = new List<Cell>();
             for (int x = 0; x < grid.columnCount; x++)
                 for (int y = 0; y < grid.rowCount; y++)
                     unvisited.cells.Add(grid[x, y]);
-            unvisited.colour = Color.blue;
+            unvisited.colour = Color.black;
 
-            cellQueue = new Highlight()
+            cellQueue = new Set()
             {
                 cells = new List<Cell>(),
                 colour = Color.yellow
@@ -34,7 +34,7 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 
         IEnumerator Backtracker(MazeGrid grid, int x, int y, Tester tester)
         {
-            unvisited.cells.Remove(grid[x, y]);
+            unvisited.RemoveCell(grid[x, y]);
             yield return new WaitForSeconds(tester.delayTime / 2f);
 
             // TODO: randomly choose cells to recurse into
@@ -48,14 +48,10 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             if (y < grid.rowCount-1)
             	directions.Add(Directions.south);
 
-            Highlight currentCell = new Highlight()
-            {
-                cells = new List<Cell>{ grid[x, y] },
-                colour = Color.red
-            };
-            OnDraw(grid, unvisited, cellQueue, cellQueue, currentCell);
+            grid[x, y].colour = Color.red;
+            OnDraw(grid);
 
-            cellQueue.cells.Add(grid[x, y]);
+            cellQueue.AddCell(grid[x, y]);
             
             while (directions.Count > 0)
             {
@@ -78,15 +74,15 @@ namespace Mazes_for_Programmers.MazeAlgorithms
                         other = new Vector2Int(x - 1, y);
                         break;
                 }
-                if (unvisited.cells.Contains(grid[other.x, other.y]))
+                if (unvisited.IsInSet(grid[other.x, other.y]))
                 {
                     grid[x, y].Link(grid[other.x, other.y]);
                     yield return tester.StartCoroutine(Backtracker(grid, other.x, other.y, tester));
                 }
             }
             
-            cellQueue.cells.Remove(grid[x, y]);
-            OnDraw(grid, unvisited, cellQueue);
+            cellQueue.RemoveCell(grid[x, y]);
+            OnDraw(grid);
             yield return new WaitForSeconds(tester.delayTime / 2f);
         }
     }

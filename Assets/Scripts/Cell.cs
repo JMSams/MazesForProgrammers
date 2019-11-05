@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Mazes_for_Programmers
 {
@@ -18,6 +19,8 @@ namespace Mazes_for_Programmers
         public Cell east { get; set; }
         public Cell south { get; set; }
         public Cell west { get; set; }
+
+        public Color colour = Color.white;
 
         public List<Cell> links;
 

@@ -7,7 +7,6 @@ namespace Mazes_for_Programmers.MazeAlgorithms
     public class Kruskal : AlgorithmBase
     {
         List<Set> sets;
-        List<Highlight> highlights;
 
         public override IEnumerator On(MazeGrid grid, Tester tester)
         {
@@ -21,11 +20,8 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             }
 
             List<Passage> passages = GeneratePassages(grid);
-
-            highlights = new List<Highlight>();
-            foreach (Set set in sets)
-                highlights.Add(set.highlight);
-            OnDraw(grid, highlights.ToArray());
+            
+            OnDraw(grid);
             yield return new WaitForSeconds(tester.delayTime);
             
             while (sets.Count >= 2)
@@ -67,12 +63,11 @@ namespace Mazes_for_Programmers.MazeAlgorithms
                     }
                 }
 
-                highlights = new List<Highlight>();
-                foreach (Set set in sets)
-                    highlights.Add(set.highlight);
-                OnDraw(grid, highlights.ToArray());
+                
+                OnDraw(grid);
                 yield return new WaitForSeconds(tester.delayTime);
             }
+            sets[0].colour = Color.white;
             OnComplete();
         }
 
@@ -92,40 +87,6 @@ namespace Mazes_for_Programmers.MazeAlgorithms
             }
 
             return passages;
-        }
-
-        class Set
-        {
-            public List<Cell> cells;
-
-            public Highlight highlight;
-
-            public Set(params Cell[] startCells)
-            {
-                cells = new List<Cell>(startCells);
-                highlight = new Highlight
-                {
-                    colour = Color.HSVToRGB(Random.value, 0.75f, 0.75f),
-                    cells = this.cells
-                };
-            }
-
-            public void AddCell(Cell cell)
-            {
-                this.cells.Add(cell);
-                highlight.cells.Add(cell);
-            }
-
-            public void RemoveCell(Cell cell)
-            {
-                this.cells.Remove(cell);
-                highlight.cells.Remove(cell);
-            }
-
-            public bool IsInSet(Cell cell)
-            {
-                return cells.Contains(cell);
-            }
         }
 
         class Passage

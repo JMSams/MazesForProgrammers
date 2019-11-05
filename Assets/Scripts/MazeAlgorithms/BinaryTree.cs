@@ -6,23 +6,23 @@ namespace Mazes_for_Programmers.MazeAlgorithms
 {
     public class BinaryTree : AlgorithmBase
     {
-        Highlight currentCell;
-        Highlight unvisited;
-
         public override IEnumerator On(MazeGrid grid, Tester tester)
         {
-            unvisited = new Highlight();
-            unvisited.cells = new List<Cell>();
+            Set unvisited = new Set();
             for (int x = 0; x < grid.columnCount; x++)
+            {
                 for (int y = 0; y < grid.rowCount; y++)
-                    unvisited.cells.Add(grid[x, y]);
-            unvisited.colour = Color.blue;
+                {
+                    unvisited.AddCell(grid[x, y]);
+                    grid[x, y].colour = Color.black;
+                }
+            }
 
             for (int y = 0; y < grid.rowCount; y++)
             {
                 for (int x = 0; x < grid.columnCount; x++)
                 {
-                    unvisited.cells.Remove(grid[x, y]);
+                    unvisited.RemoveCell(grid[x, y]);
 
                     // If current cell is in the north east corner
                     if (x == grid.columnCount-1 && y == 0)
@@ -46,13 +46,9 @@ namespace Mazes_for_Programmers.MazeAlgorithms
                         else
                             grid[x, y].Link(grid[x + 1, y]);
                     }
-
-                    OnDraw(grid, new Highlight()
-                        {
-                            cells = new List<Cell>{ grid[x, y] },
-                            colour = Color.red
-                        }, unvisited
-                    );
+                    grid[x, y].colour = Color.red;
+                    OnDraw(grid);
+                    grid[x, y].colour = Color.white;
                     yield return new WaitForSeconds(tester.delayTime);
                 }
             }
